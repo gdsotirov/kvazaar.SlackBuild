@@ -17,11 +17,11 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: kvazaar-0.6.1.diff,v 1.1 2016/09/22 10:21:44 gsotirov Exp $
+# $Id: kvazaar-0.7.2.diff,v 1.1 2016/09/22 10:26:18 gsotirov Exp $
 #
-diff -urNad kvazaar-0.6.1-orig/src/Makefile kvazaar-0.6.1/src/Makefile
---- kvazaar-0.6.1-orig/src/Makefile	2015-09-16 18:42:20.000000000 +0300
-+++ kvazaar-0.6.1/src/Makefile	2016-09-22 13:18:04.000000000 +0300
+diff -urNad kvazaar-0.7.2-orig/src/Makefile kvazaar-0.7.2/src/Makefile
+--- kvazaar-0.7.2-orig/src/Makefile	2015-10-30 17:31:55.000000000 +0200
++++ kvazaar-0.7.2/src/Makefile	2016-09-22 12:53:32.000000000 +0300
 @@ -50,10 +50,10 @@
  # clang-4.3.0: slight benefit from -O3, more from -flto
  CFLAGS += -O2 -g -ftree-vectorize
@@ -35,7 +35,7 @@ diff -urNad kvazaar-0.6.1-orig/src/Makefile kvazaar-0.6.1/src/Makefile
  
  ARCH ?= $(shell uname -m)
  
-@@ -116,7 +116,7 @@
+@@ -126,7 +126,7 @@
      ASFLAGS += -f elf32
    endif
    LIBKVAZAAR_SHARED = $(LIB)
@@ -44,7 +44,7 @@ diff -urNad kvazaar-0.6.1-orig/src/Makefile kvazaar-0.6.1/src/Makefile
  endif
  
  # Flags shared across systems
-@@ -255,8 +255,8 @@
+@@ -281,8 +281,8 @@
                       -compatibility_version $(VER_MAJOR) \
                       -install_name $(LIBDIR)/$@
  
@@ -55,7 +55,7 @@ diff -urNad kvazaar-0.6.1-orig/src/Makefile kvazaar-0.6.1/src/Makefile
  
  $(STATIC): $(OBJS)
  	$(RM) $@
-@@ -265,6 +265,8 @@
+@@ -291,6 +291,8 @@
  
  $(LIB) $(DLL) $(DYLIB): $(SHARED_OBJS)
  	$(LD) $^ $(LDFLAGS) $(LIBS) -o $@
@@ -64,7 +64,7 @@ diff -urNad kvazaar-0.6.1-orig/src/Makefile kvazaar-0.6.1/src/Makefile
  
  $(DEBUG): $(DEBUG_OBJS)
  	$(LD) $^ $(LDFLAGS) $(LIBS) -o $@
-@@ -356,6 +358,8 @@
+@@ -382,6 +384,8 @@
  clean:
  	$(RM) $(RELEASE_OBJS) $(SHARED_OBJS) $(DEBUG_OBJS) $(TESTS_OBJS) $(DEPS)
  	$(RM) $(PROG) $(DEBUG) $(TESTS) $(STATIC) $(LIB) $(DLL) $(IMPLIB) $(DYLIB)
